@@ -1,11 +1,30 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import colors from '../colors';
+
+const rotate = keyframes`
+  0% {
+    transform: scale(1);
+  }
+
+  10% {
+    transform: scale(1.1);
+  }
+
+  20% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+`;
 
 const Main = styled.div`
   position: relative;
 `;
 
 const Link = styled.a<{ $isActive: boolean; $isOdd: boolean }>`
+  cursor: pointer;
   font-family: 'Kanit';
   font-size: 3rem;
   font-weight: 700;
@@ -43,25 +62,33 @@ const SvgTriangle = styled.svg<{ $color?: string }>`
   top: 0;
   left: 0;
   rotate: ${(props) => (props.$color ? '4deg' : '')};
+  animation: ${rotate} ease 2s infinite;
+  animation-delay: 1s;
 
   & path {
     fill: ${(props) => props.$color || '#f5f5f5'};
+  }
+
+  & + & {
+    animation: none;
   }
 `;
 export default function NavItem({
   text,
   isActive,
   activeChange,
+  OnCLick,
   isOdd,
 }: {
   text: string;
   isActive: boolean;
   activeChange?: () => void;
+  OnCLick: () => void;
   isOdd: boolean;
 }) {
   return (
     <Main onMouseEnter={activeChange}>
-      <Link $isOdd={isOdd} $isActive={isActive} href="">
+      <Link onClick={OnCLick} $isOdd={isOdd} $isActive={isActive}>
         {text}
       </Link>
       <Decorations $isOdd={isOdd} className={isActive ? 'active' : ''}>
