@@ -6,12 +6,13 @@ import { Sections } from '../config/enums';
 
 import { change } from '../redux/sectionState';
 import { useAppDispatch } from '../redux/hooks';
-import { motion, AnimatePresence, easeInOut, easeOut } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 const Wrapper = styled.div`
+  position: absolute;
   height: 100vh;
   width: 100vw;
-  background: linear-gradient(0deg, rgba(6, 56, 75, 1) 0%, rgba(58, 149, 183, 1) 100%);
+  background-color: ${colors.background};
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -20,8 +21,7 @@ const Wrapper = styled.div`
   gap: 6rem;
   padding-top: 2rem;
 
-  transform: translateX(-0%);
-  overflow: hidden;
+  z-index: 10;
 `;
 
 const Title = styled.h1<{ $fontSize?: string }>`
@@ -30,7 +30,13 @@ const Title = styled.h1<{ $fontSize?: string }>`
 
 const SubTitle = styled(Title)`
   color: ${colors.primary};
+  width: 40%;
   position: relative;
+
+  color: transparent;
+  background-clip: text;
+  background-color: #4158d0;
+  ${colors.gradient}
 
   &::before {
     content: '';
@@ -63,13 +69,15 @@ const FooterInfo = styled.footer`
   }
 `;
 
-const AnimationTransition = styled.div`
+const AnimationTransition = styled.div<{ $color?: string }>`
   position: absolute;
-  top: 0;
-  right: 0;
-  height: 100vh;
-  width: 20rem;
-  background-color: white;
+  top: 40%;
+  left: 20%;
+  width: 10rem;
+  aspect-ratio: 1;
+  border-radius: 100%;
+  background-color: ${(props) => props.$color};
+  z-index: 2;
 `;
 
 export default function Main() {
@@ -83,8 +91,8 @@ export default function Main() {
   }
 
   return (
-    <Wrapper transition={{ duration: 0.5 }} as={motion.div}>
-      <div>
+    <Wrapper>
+      <motion.div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
         <Title as="h2" $fontSize="8rem">
           Ekzis
         </Title>
@@ -94,7 +102,7 @@ export default function Main() {
         <SubTitle as="h3" $fontSize="1.3rem">
           frontend developer
         </SubTitle>
-      </div>
+      </motion.div>
       <Nav>
         <NavItem
           OnCLick={() => dispatch(change(Sections.projects))}
@@ -123,10 +131,18 @@ export default function Main() {
         <a href="https://github.com/Ekzisss/OceanHeart">Github</a>
       </FooterInfo>
       <AnimationTransition
-        transition={{ duration: 2 }}
-        initial={{ skew: -10, translateX: '140%' }}
+        $color={colors.primary}
+        initial={{ top: '10%', left: '10%', scale: 0 }}
+        transition={{ duration: 0.5 }}
         as={motion.div}
-        exit={{ x: -window.screen.width, skew: -10 }}
+        exit={{ scale: 25 }}
+      ></AnimationTransition>
+      <AnimationTransition
+        $color={colors.background}
+        initial={{ scale: 0 }}
+        transition={{ delay: 0.2, duration: 0.5 }}
+        as={motion.div}
+        exit={{ scale: 25 }}
       ></AnimationTransition>
     </Wrapper>
   );

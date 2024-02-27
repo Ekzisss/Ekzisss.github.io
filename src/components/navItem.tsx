@@ -29,16 +29,25 @@ const Link = styled.a<{ $isActive: boolean; $isOdd: boolean }>`
   font-size: 3rem;
   font-weight: 700;
   text-decoration: none;
+
   color: ${(props) => (props.$isActive ? colors.primary : colors.color)};
+
+  ${(props) =>
+    props.$isActive
+      ? `color: transparent;
+  background-clip: text;
+  background-color: #4158d0;
+  ${colors.gradient}`
+      : ''}
+
   z-index: 1;
   position: relative;
   display: block;
-  rotate: ${(props) => (props.$isActive ? (props.$isOdd ? '4deg' : '-4deg') : '')};
-  transition: all linear 0.2s;
+  transform: rotate(${(props) => (props.$isActive ? (props.$isOdd ? '4deg' : '-4deg') : '')});
+  transition: transform linear 0.2s;
 `;
 
 const Decorations = styled.div<{ $isOdd: boolean }>`
-  /* display: none; */
   opacity: 0;
   position: absolute;
   width: 130%;
@@ -50,7 +59,6 @@ const Decorations = styled.div<{ $isOdd: boolean }>`
   transition: all linear 0.1s;
 
   &.active {
-    /* display: block; */
     opacity: 1;
   }
 `;
@@ -66,7 +74,9 @@ const SvgTriangle = styled.svg<{ $color?: string }>`
   animation-delay: 1s;
 
   & path {
-    fill: ${(props) => props.$color || '#f5f5f5'};
+    /* fill: url(#my-cool-gradient); */
+
+    fill: ${(props) => (props.$color ? `url(#my-cool-gradient)` : '#f5f5f5')};
   }
 
   & + & {
