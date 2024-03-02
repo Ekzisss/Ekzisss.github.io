@@ -1,4 +1,9 @@
-export default (circles: Array<HTMLDivElement>, coords: any) => {
+interface HTMLDivElementMutated extends HTMLElement {
+  x?: number;
+  y?: number;
+}
+
+export default (circles: Array<HTMLDivElementMutated>, coords: { x: number; y: number }) => {
   circles = Array.from(document.querySelectorAll('#circle'));
 
   circles.forEach(function (circle) {
@@ -20,8 +25,10 @@ export default (circles: Array<HTMLDivElement>, coords: any) => {
       circle.y = y;
 
       const nextCircle = circles[index + 1] || circles[0];
-      x += (nextCircle.x - x) * 0.6;
-      y += (nextCircle.y - y) * 0.6;
+      if (nextCircle.x && nextCircle.y) {
+        x += (nextCircle.x - x) * 0.6;
+        y += (nextCircle.y - y) * 0.6;
+      }
     });
 
     requestAnimationFrame(animateCircles);

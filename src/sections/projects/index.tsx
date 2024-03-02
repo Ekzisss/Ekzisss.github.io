@@ -1,6 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
-import colors from '../../colors';
 import Project from '@/components/projects';
 import { dbGet, projTypes } from '@/features/dbGet';
 import ProjDisplay from '@/components/projDisplay';
