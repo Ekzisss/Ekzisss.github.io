@@ -19,14 +19,15 @@ const Wrapper = styled.div`
   width: 100vw;
   overflow: hidden;
   background-color: ${colors.primary};
+  cursor: none;
 `;
 
 const Circle = styled.div`
-  height: 24px;
-  width: 24px;
-  border-radius: 24px;
-  /* background-color: ${colors.accent}; */
-  background: linear-gradient(43deg, #4158d0 0%, #c850c0 46%, #ffcc70 100%);
+  height: 10px;
+  width: 10px;
+  border-radius: 10px;
+  background-color: ${colors.accent};
+  /* background: linear-gradient(43deg, #4158d0 0%, #c850c0 46%, #ffcc70 100%); */
   position: fixed;
   pointer-events: none;
   z-index: 99999999;
@@ -56,7 +57,7 @@ function App() {
       <AnimatePresence mode="sync">{sectionState === Sections.projects ? <Projects></Projects> : ''}</AnimatePresence>
       <AnimatePresence>{sectionState === Sections.persona ? <Persona></Persona> : ''}</AnimatePresence>
       <AnimatePresence>{sectionState === Sections.contact ? <Contact></Contact> : ''}</AnimatePresence>
-      {/* <div>
+      <div>
         <Circle id="circle"></Circle>
         <Circle id="circle"></Circle>
         <Circle id="circle"></Circle>
@@ -73,7 +74,7 @@ function App() {
         <Circle id="circle"></Circle>
         <Circle id="circle"></Circle>
         <Circle id="circle"></Circle>
-      </div> */}
+      </div>
 
       <svg aria-hidden="true" focusable="false">
         <linearGradient id="my-cool-gradient" x2="1" y2="1">

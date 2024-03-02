@@ -78,11 +78,6 @@ const AnimationTransition = styled.div<{ $color?: string }>`
   z-index: 2;
 `;
 
-const AnimationTransition2 = styled(AnimationTransition)`
-  background-color: ${colors.background};
-  mask: polygon(0 0, 100% 0, 100% 50%, 50% 100%, 0 50%);
-`;
-
 export default function Main() {
   const dispatch = useAppDispatch();
   const [navItemActive, setNavItemActive] = React.useState([true, false, false]);
@@ -136,7 +131,7 @@ export default function Main() {
         initial={{ top: '10%', left: '10%', scale: 0 }}
         transition={{ duration: 0.5 }}
         as={motion.div}
-        exit={{ scale: 20 }}
+        exit={{ scale: Math.floor(window.innerWidth / 100) + 4 }}
       ></AnimationTransition>
     </Wrapper>
   );

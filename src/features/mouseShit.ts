@@ -11,8 +11,8 @@ export default (circles: Array<HTMLDivElement>, coords: any) => {
     let y = coords.y;
 
     circles.forEach(function (circle, index) {
-      circle.style.left = x - 12 + 'px';
-      circle.style.top = y - 12 + 'px';
+      circle.style.left = x - 5 + 'px';
+      circle.style.top = y - 5 + 'px';
 
       circle.style.scale = ((circles.length - index) / circles.length).toString();
 
