@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import colors from '@/colors';
 import { projTypes } from '@/features/dbGet';
 import { SemiMediumTittle } from '@/styles';
+import img1 from '@/assets/0.webp';
+import img2 from '@/assets/1.webp';
 
 const Left = styled.div`
   display: flex;
@@ -45,9 +47,11 @@ const Right = styled.div`
   }
 `;
 
+const images = [img1, img2];
+
 const ProjDisplay: FC<propTypes> = ({ project }) => {
-  const image = new URL(`/src/assets/${project.number}.webp`, import.meta.url).href;
-  console.log(project.number);
+  // const image = new URL(`/src/assets/${project.number}.webp`, import.meta.url).href;
+  // console.log(project.number);
   return (
     <>
       <Left>
@@ -72,7 +76,7 @@ const ProjDisplay: FC<propTypes> = ({ project }) => {
       </Left>
       <Right>
         <a href={project.link}>
-          <img src={image} alt="" />
+          <img src={images[project.number]} alt="" />
         </a>
         <a href={project.link}>Website</a>
         <a href={project.github}>Github</a>

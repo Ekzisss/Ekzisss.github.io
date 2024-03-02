@@ -26,8 +26,8 @@ export default (circles: Array<HTMLDivElementMutated>, coords: { x: number; y: n
 
       const nextCircle = circles[index + 1] || circles[0];
       if (nextCircle.x && nextCircle.y) {
-        x += (nextCircle.x - x) * 0.6;
-        y += (nextCircle.y - y) * 0.6;
+        x += (nextCircle.x - x) * 0.5;
+        y += (nextCircle.y - y) * 0.5;
       }
     });
 
