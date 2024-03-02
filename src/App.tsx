@@ -33,14 +33,16 @@ const Circle = styled.div`
   z-index: 99999999;
 `;
 
+let initial = false;
+
 const circles: Array<HTMLDivElement> = [];
 const coords = { x: 0, y: 0 };
-// const clickAnim = { animate: { top: Math.random() * 200 - 100, left: Math.random() * 200 - 100, opacity: 0 } };
 
 function App() {
   const sectionState = useAppSelector((state) => state.sectionState.value);
 
   useEffect(() => {
+    setTimeout(() => (initial = true), 1000);
     mouseShit(circles, coords);
   }, []);
 
@@ -53,7 +55,7 @@ function App() {
 
   return (
     <Wrapper onMouseMove={mouseTrailHandler}>
-      <AnimatePresence mode="sync">{sectionState === Sections.main ? <Main></Main> : ''}</AnimatePresence>
+      <AnimatePresence mode="sync">{sectionState === Sections.main ? <Main initial={initial}></Main> : ''}</AnimatePresence>
       <AnimatePresence mode="sync">{sectionState === Sections.projects ? <Projects></Projects> : ''}</AnimatePresence>
       <AnimatePresence>{sectionState === Sections.persona ? <Persona></Persona> : ''}</AnimatePresence>
       <AnimatePresence>{sectionState === Sections.contact ? <Contact></Contact> : ''}</AnimatePresence>

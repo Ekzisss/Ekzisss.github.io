@@ -78,7 +78,7 @@ const AnimationTransition = styled.div<{ $color?: string }>`
   z-index: 2;
 `;
 
-export default function Main() {
+export default function Main({ initial }: { initial: boolean }) {
   const dispatch = useAppDispatch();
   const [navItemActive, setNavItemActive] = React.useState([true, false, false]);
 
@@ -91,9 +91,9 @@ export default function Main() {
   return (
     <Wrapper
       as={motion.div}
-      initial={{ clipPath: 'circle(1% at 30% 40%)' }}
+      initial={initial ? { clipPath: 'circle(0% at 30% 40%)' } : ''}
       transition={{ duration: 1 }}
-      animate={{ clipPath: 'circle(100% at 30% 40%)' }}
+      animate={initial ? { clipPath: 'circle(100% at 30% 40%)' } : ''}
     >
       <motion.div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
         <BigTittle>Ekzis</BigTittle>

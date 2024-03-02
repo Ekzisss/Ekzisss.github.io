@@ -46,6 +46,7 @@ const Right = styled.div`
 `;
 
 const ProjDisplay: FC<propTypes> = ({ project }) => {
+  const image = new URL(`/src/assets/${project.number}.webp`, import.meta.url).href;
   console.log(project.number);
   return (
     <>
@@ -71,7 +72,7 @@ const ProjDisplay: FC<propTypes> = ({ project }) => {
       </Left>
       <Right>
         <a href={project.link}>
-          <img src={`src/assets/${project.number}.png`} alt="" />
+          <img src={image} alt="" />
         </a>
         <a href={project.link}>Website</a>
         <a href={project.github}>Github</a>
