@@ -5,7 +5,7 @@ import { Sections } from '../config/enums';
 export const sectionState = createSlice({
   name: 'sectionState',
   initialState: {
-    value: Sections.main,
+    value: Sections.projects,
   },
   reducers: {
     change: (state, action: PayloadAction<Sections>) => {

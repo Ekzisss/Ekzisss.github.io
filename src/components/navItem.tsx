@@ -23,7 +23,7 @@ const Main = styled.div`
   position: relative;
 `;
 
-const Link = styled.a<{ $isActive: boolean; $isOdd: boolean }>`
+const StyledLink = styled.a<{ $isActive: boolean; $isOdd: boolean }>`
   cursor: pointer;
   font-family: 'Kanit';
   font-size: 3rem;
@@ -98,9 +98,9 @@ export default function NavItem({
 }) {
   return (
     <Main onMouseEnter={activeChange}>
-      <Link onClick={OnCLick} $isOdd={isOdd} $isActive={isActive}>
+      <StyledLink onClick={OnCLick} $isOdd={isOdd} $isActive={isActive}>
         {text}
-      </Link>
+      </StyledLink>
       <Decorations $isOdd={isOdd} className={isActive ? 'active' : ''}>
         <SvgTriangle
           $color={colors.primary}

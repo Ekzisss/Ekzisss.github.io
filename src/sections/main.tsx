@@ -8,6 +8,8 @@ import { change } from '../redux/sectionState';
 import { useAppDispatch } from '../redux/hooks';
 import { motion } from 'framer-motion';
 
+import { BigTittle, MediumTittle, SmallTittle } from '@/styles';
+
 const Wrapper = styled.div`
   position: absolute;
   height: 100vh;
@@ -24,11 +26,7 @@ const Wrapper = styled.div`
   z-index: 10;
 `;
 
-const Title = styled.h1<{ $fontSize?: string }>`
-  font-size: ${(props) => props.$fontSize};
-`;
-
-const SubTitle = styled(Title)`
+const SubTitle = styled(SmallTittle)`
   color: ${colors.primary};
   width: 40%;
   position: relative;
@@ -76,8 +74,13 @@ const AnimationTransition = styled.div<{ $color?: string }>`
   width: 10rem;
   aspect-ratio: 1;
   border-radius: 100%;
-  background-color: ${(props) => props.$color};
+  background-color: ${colors.primary};
   z-index: 2;
+`;
+
+const AnimationTransition2 = styled(AnimationTransition)`
+  background-color: ${colors.background};
+  mask: polygon(0 0, 100% 0, 100% 50%, 50% 100%, 0 50%);
 `;
 
 export default function Main() {
@@ -91,17 +94,16 @@ export default function Main() {
   }
 
   return (
-    <Wrapper>
+    <Wrapper
+      as={motion.div}
+      initial={{ clipPath: 'circle(1% at 30% 40%)' }}
+      transition={{ duration: 1 }}
+      animate={{ clipPath: 'circle(100% at 30% 40%)' }}
+    >
       <motion.div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-        <Title as="h2" $fontSize="8rem">
-          Ekzis
-        </Title>
-        <Title as="h2" $fontSize="4rem">
-          Almaz Abdulhakov
-        </Title>
-        <SubTitle as="h3" $fontSize="1.3rem">
-          frontend developer
-        </SubTitle>
+        <BigTittle>Ekzis</BigTittle>
+        <MediumTittle>Almaz Abdulhakov</MediumTittle>
+        <SubTitle>frontend developer</SubTitle>
       </motion.div>
       <Nav>
         <NavItem
@@ -131,18 +133,10 @@ export default function Main() {
         <a href="https://github.com/Ekzisss/OceanHeart">Github</a>
       </FooterInfo>
       <AnimationTransition
-        $color={colors.primary}
         initial={{ top: '10%', left: '10%', scale: 0 }}
         transition={{ duration: 0.5 }}
         as={motion.div}
-        exit={{ scale: 25 }}
-      ></AnimationTransition>
-      <AnimationTransition
-        $color={colors.background}
-        initial={{ scale: 0 }}
-        transition={{ delay: 0.2, duration: 0.5 }}
-        as={motion.div}
-        exit={{ scale: 25 }}
+        exit={{ scale: 20 }}
       ></AnimationTransition>
     </Wrapper>
   );
