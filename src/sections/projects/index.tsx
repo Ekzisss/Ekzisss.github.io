@@ -6,7 +6,7 @@ import { BackButton } from '@/styles';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { change } from '@/redux/sectionState';
 
-import { Main, ProjectsCarousel, Presentation } from './styledComp';
+import { Main, ProjectsCarousel, Presentation, Decoration, Decoration2, DecorationContainer } from './styledComp';
 import { motion } from 'framer-motion';
 import { Sections } from '@/config/enums';
 
@@ -46,6 +46,10 @@ export default function Projects() {
       </ProjectsCarousel>
       <Presentation>{projects[currentProj] ? <ProjDisplay project={projects[currentProj]}></ProjDisplay> : ''}</Presentation>
       <BackButton onClick={() => dispatch(change(0))}></BackButton>
+
+      <Decoration as={motion.div} animate={{ transform: 'rotate(-10deg) translateX(100px)' }} transition={{ duration: 1 }}>
+        <h1>PROJECTS</h1>
+      </Decoration>
     </Main>
   );
 }

@@ -45,3 +45,50 @@ export const Presentation = styled.div`
   flex-grow: 1;
   max-width: calc(100% - 30rem);
 `;
+
+// export const Decoration = styled.div`
+//   position: absolute;
+//   bottom: -5%;
+//   right: 0;
+//   z-index: 1;
+//   rotate: -10deg;
+
+//   & h1 {
+//     font-size: 10rem;
+//     font-family: 'Kanit';
+//     color: ${colors.primary};
+//   }
+// `;
+
+export const Decoration = styled.div`
+  position: absolute;
+  height: 15rem;
+  width: 200rem;
+  background-color: ${colors.primary2};
+  bottom: -13%;
+  right: 15%;
+  transform: rotate(-10deg) translate(-1000px);
+  z-index: -1;
+
+  & h1 {
+    color: ${colors.primary};
+    position: absolute;
+    right: -3%;
+    font-family: 'Kanit';
+    white-space: nowrap;
+    font-size: 10rem;
+    z-index: -1;
+    letter-spacing: -0.2rem;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: ${colors.primary3};
+    right: 1rem;
+    top: 1rem;
+    z-index: -1;
+  }
+`;

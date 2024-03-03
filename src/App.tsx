@@ -2,7 +2,7 @@ import { MouseEvent, useEffect } from 'react';
 import './global.css';
 import { AnimatePresence } from 'framer-motion';
 
-import Main from './sections/main';
+import Main from './sections/main/main';
 import Persona from './sections/persona/persona';
 import Contact from './sections/contact';
 import Projects from './sections/projects';
