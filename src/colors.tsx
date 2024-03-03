@@ -8,4 +8,6 @@ export default {
   onlyGradient: 'linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%)',
   gradientText:
     'color: transparent;background-clip: text;background-color: #4158D0;background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);',
+  darkGradientText:
+    'color: transparent;background-clip: text;background-color: #4158D0;background-image: linear-gradient(180deg, rgba(227,227,227,1) 40%, rgba(40,40,40,1) 100%);',
 };
