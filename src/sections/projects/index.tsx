@@ -6,7 +6,7 @@ import { BackButton } from '@/styles';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { change } from '@/redux/sectionState';
 
-import { Main, ProjectsCarousel, Presentation, Decoration, Decoration2, DecorationContainer } from './styledComp';
+import { Main, ProjectsCarousel, Presentation, Decoration } from './styledComp';
 import { motion } from 'framer-motion';
 import { Sections } from '@/config/enums';
 

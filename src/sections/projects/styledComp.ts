@@ -46,20 +46,6 @@ export const Presentation = styled.div`
   max-width: calc(100% - 30rem);
 `;
 
-// export const Decoration = styled.div`
-//   position: absolute;
-//   bottom: -5%;
-//   right: 0;
-//   z-index: 1;
-//   rotate: -10deg;
-
-//   & h1 {
-//     font-size: 10rem;
-//     font-family: 'Kanit';
-//     color: ${colors.primary};
-//   }
-// `;
-
 export const Decoration = styled.div`
   position: absolute;
   height: 15rem;
