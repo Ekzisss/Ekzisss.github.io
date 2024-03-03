@@ -13,10 +13,6 @@ export default function Persona() {
   const dispatch = useAppDispatch();
   const sectionState = useAppSelector((state) => state.sectionState.value);
 
-  // React.useEffect(() => {
-  //   new CircleType(document.getElementById('curve')).dir(-1).radius(200);
-  // }, []);
-
   return (
     <Main
       as={motion.div}
@@ -35,12 +31,6 @@ export default function Persona() {
         </p>
         <section>
           <h2>Stack</h2>
-          {/* <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <circle id="curve" cx="50" cy="50" r="50" fill="transparent" />
-            <text fill="#FF9800" width="500">
-              <textPath xlinkHref="#curve">Dangerous Curves Ahead</textPath>
-            </text>
-          </svg> */}
           <ol>
             <li>
               <h3>Frontend (Main)</h3>
@@ -89,11 +79,6 @@ export default function Persona() {
         </section>
       </Left>
       <Right></Right>
-      {/* <Circle>
-        <Circle2>
-          <Circle3></Circle3>
-        </Circle2>
-      </Circle> */}
       <BackButton onClick={() => dispatch(change(0))}></BackButton>
       <SvgCircle></SvgCircle>
     </Main>

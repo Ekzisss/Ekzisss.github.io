@@ -1,5 +1,5 @@
 {
-  "name": "oceanheart",
+  "name": "granite",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -11,16 +11,13 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.1",
-    "circletype": "^2.3.0",
-    "clsx": "^2.1.0",
     "firebase": "^10.8.0",
     "framer-motion": "^11.0.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^9.1.0",
     "react-router-dom": "^6.22.2",
-    "styled-components": "^6.1.8",
-    "tailwind-merge": "^2.2.1"
+    "styled-components": "^6.1.8"
   },
   "devDependencies": {
     "@types/react": "^18.2.55",
@@ -32,8 +29,6 @@
     "eslint": "^8.56.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
-    "postcss": "^8.4.35",
-    "tailwindcss": "^3.4.1",
     "typescript": "^5.2.2",
     "vite": "^5.1.0"
   }

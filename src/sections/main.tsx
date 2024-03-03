@@ -125,7 +125,7 @@ export default function Main({ initial }: { initial: boolean }) {
       </Nav>
       <FooterInfo>
         <a href="https://t.me/Ekzissss">Telegram</a> <span>, </span>
-        <a href="https://github.com/Ekzisss/OceanHeart">Github</a>
+        <a href="https://github.com/Ekzisss/Ekzisss.github.io">Github</a>
       </FooterInfo>
       <AnimationTransition
         initial={{ top: '10%', left: '10%', scale: 0 }}
