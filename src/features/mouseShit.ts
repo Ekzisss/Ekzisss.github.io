@@ -4,8 +4,6 @@ interface HTMLDivElementMutated extends HTMLElement {
 }
 
 export default (circles: Array<HTMLDivElementMutated>, coords: { x: number; y: number }) => {
-  circles = Array.from(document.querySelectorAll('#circle'));
-
   circles.forEach(function (circle) {
     circle.x = 0;
     circle.y = 0;

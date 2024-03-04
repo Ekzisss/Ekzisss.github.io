@@ -1,10 +1,10 @@
-import { MouseEvent, useEffect } from 'react';
+import { MouseEvent, useEffect, useRef, useState } from 'react';
 import './global.css';
 import { AnimatePresence } from 'framer-motion';
 
 import Main from './sections/main/main';
 import Persona from './sections/persona/persona';
-import Contact from './sections/contact';
+import Contact from './sections/contact/contact';
 import Projects from './sections/projects';
 
 import { Sections } from './config/enums';
@@ -27,23 +27,23 @@ const Circle = styled.div`
   width: 10px;
   border-radius: 10px;
   background-color: ${colors.accent};
-  /* background: linear-gradient(43deg, #4158d0 0%, #c850c0 46%, #ffcc70 100%); */
   position: fixed;
   pointer-events: none;
   z-index: 99999999;
 `;
 
 let initial = false;
-
-const circles: Array<HTMLDivElement> = [];
 const coords = { x: 0, y: 0 };
 
 function App() {
   const sectionState = useAppSelector((state) => state.sectionState.value);
+  const [submitted, setSubmitted] = useState<boolean>(false);
+
+  const circles = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setTimeout(() => (initial = true), 1000);
-    mouseShit(circles, coords);
+    circles.current && mouseShit(Array.from(circles.current.querySelectorAll('*')), coords);
   }, []);
 
   function mouseTrailHandler(e: MouseEvent<HTMLDivElement>) {
@@ -58,8 +58,10 @@ function App() {
       <AnimatePresence mode="sync">{sectionState === Sections.main ? <Main initial={initial}></Main> : ''}</AnimatePresence>
       <AnimatePresence mode="sync">{sectionState === Sections.projects ? <Projects></Projects> : ''}</AnimatePresence>
       <AnimatePresence>{sectionState === Sections.persona ? <Persona></Persona> : ''}</AnimatePresence>
-      <AnimatePresence>{sectionState === Sections.contact ? <Contact></Contact> : ''}</AnimatePresence>
-      <div>
+      <AnimatePresence>
+        {sectionState === Sections.contact ? <Contact submitted={submitted} setSubmitted={setSubmitted}></Contact> : ''}
+      </AnimatePresence>
+      <div ref={circles}>
         <Circle id="circle"></Circle>
         <Circle id="circle"></Circle>
         <Circle id="circle"></Circle>

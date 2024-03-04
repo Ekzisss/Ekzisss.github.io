@@ -26,11 +26,11 @@ const SvgCircle = () => {
     >
       <defs>
         <linearGradient id="grad1" x1="3.81" y1="149.66" x2="296.03" y2="149.66" gradientUnits="userSpaceOnUse">
-          <stop offset="0" stop-color="#4158d0" />
-          <stop offset="0.11" stop-color="#5b56cd" />
-          <stop offset="0.35" stop-color="#9c53c5" />
-          <stop offset="0.49" stop-color="#c850c0" />
-          <stop offset="1" stop-color="#ffcc70" />
+          <stop offset="0" stopColor="#4158d0" />
+          <stop offset="0.11" stopColor="#5b56cd" />
+          <stop offset="0.35" stopColor="#9c53c5" />
+          <stop offset="0.49" stopColor="#c850c0" />
+          <stop offset="1" stopColor="#ffcc70" />
         </linearGradient>
       </defs>
       <circle className="cls-1" cx="150" cy="150" r="150" />
