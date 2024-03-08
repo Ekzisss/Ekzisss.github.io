@@ -78,7 +78,6 @@ export default function Persona() {
           </ol>
         </section>
       </Left>
-      <Right></Right>
       <BackButton onClick={() => dispatch(change(0))}></BackButton>
       <SvgCircle></SvgCircle>
     </Main>

@@ -11,24 +11,45 @@ export const Main = styled.div`
 `;
 
 export const Left = styled.div`
-  width: 50%;
+  ${window.innerWidth > 1410 ? 'width: 50%;padding-left: 2rem;' : 'width: 100%; overflow-y: auto; overflow-x: hidden;'}
+  padding: 1rem;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  padding-left: 2rem;
   flex-direction: column;
   margin-top: 5rem;
   gap: 1rem;
+  ${window.innerWidth > 1410
+    ? ''
+    : `&::before {
+      content: '';
+      position: absolute;
+      top: 4rem;
+      left: -2rem;
+      width: 120vw;
+      height: 18rem;
+      background-color: #00000040;
+      transform: rotate(-5deg);
+      z-index: -1;
+    }`}
 
   & h1 {
     ${colors.gradientText}
-    font-size: 5rem;
+    text-align: center;
+    width: 100%;
+    ${window.innerWidth < 490 ? 'font-size: 3rem;' : 'font-size: 5rem;'}
+  }
+
+  & p {
+    width: 100%;
+    text-align: center;
+    ${window.innerWidth < 490 ? 'font-size: 0.7rem;' : ''}
   }
 
   & h2 {
     ${colors.darkGradientText}
-    font-size: 3rem;
     margin-bottom: 1rem;
+    ${window.innerWidth < 490 ? 'font-size: 2rem;' : 'font-size: 3rem;'}
   }
 
   & section {
@@ -56,12 +77,12 @@ export const Left = styled.div`
     border: 2px solid ${colors.color};
     padding: 1rem;
     list-style: none;
-    width: 13rem;
-    height: 13rem;
+    ${window.innerWidth < 490 ? 'width: 8rem;height: 8rem;font-size: 0.7rem;' : 'width: 13rem;height: 13rem;'}
     border-radius: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    background: #00000030;
 
     transition-duration: 300ms;
     transition-property: transform, box-shadow;

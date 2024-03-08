@@ -9,6 +9,7 @@ const SvgCir = styled.svg`
   top: 10%;
   right: 10%;
   transform-origin: top right !important;
+  z-index: -2;
 `;
 
 const SvgCircle = () => {

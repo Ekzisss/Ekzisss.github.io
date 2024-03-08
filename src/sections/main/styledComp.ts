@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import colors from '../../colors';
-import { SmallTittle } from '@/styles';
 
 export const Wrapper = styled.div`
   position: absolute;
@@ -18,29 +17,16 @@ export const Wrapper = styled.div`
   z-index: 10;
 `;
 
-export const SubTitle = styled(SmallTittle)`
+export const SubTitle = styled.h2`
   color: ${colors.primary};
-  width: 40%;
+  width: 100%;
   position: relative;
+  ${window.innerWidth >= 1024 ? 'font-size: 1.3vw;' : 'font-size: 1.3rem;'}
 
   color: transparent;
   background-clip: text;
   background-color: #4158d0;
   ${colors.gradient}
-
-  &::before {
-    content: '';
-    position: absolute;
-    display: block;
-    top: 50%;
-    left: 50%;
-    width: 70%;
-    height: 25%;
-    background-color: ${colors.primary};
-    transform: translate(-50%, 50%);
-    border-radius: 100%;
-    filter: blur(0.5rem);
-  }
 `;
 
 export const Nav = styled.nav`
@@ -73,12 +59,12 @@ export const AnimationTransition = styled.div<{ $color?: string }>`
 export const Decoration = styled.div`
   position: absolute;
   height: 100vh;
-  width: 30rem;
+  ${window.innerWidth >= 1024 ? 'width: 25vw;' : 'width: 45vw;'}
   background-color: ${colors.primary2};
   top: 0;
   left: 0;
-  transform: skew(-8deg) translateX(-20%);
-  z-index: -1;
+  transform: skew(-8deg) ${window.innerWidth >= 1024 ? 'translateX(-20%)' : 'translateX(-40%)'};
+  z-index: -2;
 
   & h1 {
     color: ${colors.primary};
@@ -86,10 +72,10 @@ export const Decoration = styled.div`
     text-orientation: sideways-right;
     rotate: 180deg;
     position: absolute;
-    right: -9%;
+    right: -2.2vw;
     font-family: 'Kanit';
     white-space: nowrap;
-    font-size: 10rem;
+    font-size: 10vw;
     z-index: -1;
     letter-spacing: -0.2rem;
   }
@@ -98,10 +84,29 @@ export const Decoration = styled.div`
     content: '';
     position: absolute;
     height: 100vh;
-    width: 30rem;
+    width: inherit;
     background-color: ${colors.primary3};
     top: 0;
-    left: -2%;
+    left: -0.5vw;
+    z-index: -1;
+  }
+`;
+
+export const Title = styled.h1`
+  ${window.innerWidth >= 1024 ? 'font-size: 8vw;' : 'font-size: 8rem;'}
+  position: relative;
+  width: 100%;
+
+  &::before {
+    content: 'Ekzis';
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    ${colors.gradientText}
+    transform: translate(-52%, -52%);
     z-index: -1;
   }
 `;

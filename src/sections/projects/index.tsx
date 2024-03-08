@@ -6,13 +6,20 @@ import { BackButton } from '@/styles';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { change } from '@/redux/sectionState';
 
-import { Main, ProjectsCarousel, Presentation, Decoration } from './styledComp';
-import { motion } from 'framer-motion';
+import { Main, ProjectsCarousel, Presentation, Decoration, EmptySpace, OpenButton } from './styledComp';
+import { easeIn, easeOut, motion } from 'framer-motion';
 import { Sections } from '@/config/enums';
+
+const variants = {
+  panel: (projectsTabOpened: boolean) => ({
+    x: projectsTabOpened ? 0 : '-100%',
+  }),
+};
 
 export default function Projects() {
   const [projects, setProjects] = React.useState<projTypes[]>([]);
   const [currentProj, setCurrentProj] = React.useState<number>(0);
+  const [projectsTabOpened, setProjectsTabOpened] = React.useState<boolean>(false);
   const dispatch = useAppDispatch();
   const sectionState = useAppSelector((state) => state.sectionState.value);
 
@@ -33,7 +40,21 @@ export default function Projects() {
       exit={{ x: 1 }}
       style={{ zIndex: sectionState === Sections.main ? '0' : '100' }}
     >
-      <ProjectsCarousel>
+      <EmptySpace style={{ width: window.innerWidth < 1420 ? '0' : '30rem' }}></EmptySpace>
+      <Presentation>{projects[currentProj] ? <ProjDisplay project={projects[currentProj]}></ProjDisplay> : ''}</Presentation>
+
+      <Decoration as={motion.div} animate={{ transform: 'rotate(-10deg) translateX(100px)' }} transition={{ duration: 1 }}>
+        <h1>PROJECTS</h1>
+      </Decoration>
+
+      <ProjectsCarousel
+        as={motion.div}
+        custom={projectsTabOpened}
+        variants={variants}
+        animate="panel"
+        $isOpened={projectsTabOpened}
+        transition={{ type: easeOut }}
+      >
         {projects?.map((item, index) => (
           <Project
             key={Symbol(index).toString()}
@@ -44,12 +65,10 @@ export default function Projects() {
           ></Project>
         ))}
       </ProjectsCarousel>
-      <Presentation>{projects[currentProj] ? <ProjDisplay project={projects[currentProj]}></ProjDisplay> : ''}</Presentation>
       <BackButton onClick={() => dispatch(change(0))}></BackButton>
-
-      <Decoration as={motion.div} animate={{ transform: 'rotate(-10deg) translateX(100px)' }} transition={{ duration: 1 }}>
-        <h1>PROJECTS</h1>
-      </Decoration>
+      {window.innerWidth < 1420 && (
+        <OpenButton $isOpened={projectsTabOpened} onClick={() => setProjectsTabOpened(!projectsTabOpened)}></OpenButton>
+      )}
     </Main>
   );
 }

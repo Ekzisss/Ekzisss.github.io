@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import colors from '@/colors';
+import { BackButton } from '@/styles';
 
 export const Main = styled.div`
   position: absolute;
@@ -10,11 +11,15 @@ export const Main = styled.div`
   z-index: 100;
 `;
 
-export const ProjectsCarousel = styled.div`
+export const ProjectsCarousel = styled.div<{ $isOpened: boolean }>`
   position: relative;
   width: 30rem;
+  position: absolute;
   height: 100vh;
   z-index: 1;
+  /* transition: 1s all linear; */
+
+  /* ${(props) => (!props.$isOpened && window.innerWidth < 1420 ? 'left: -10%;' : '')} */
 
   display: flex;
   flex-direction: column;
@@ -43,7 +48,8 @@ export const Presentation = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   flex-grow: 1;
-  max-width: calc(100% - 30rem);
+  ${window.innerWidth < 1420 ? `max-width: 100%; padding-top: 3rem;` : 'max-width: calc(100% - 30rem);'}
+  ${window.innerWidth < 690 ? `flex-direction: column;` : ''}
 `;
 
 export const Decoration = styled.div`
@@ -76,5 +82,18 @@ export const Decoration = styled.div`
     right: 1rem;
     top: 1rem;
     z-index: -1;
+  }
+`;
+
+export const EmptySpace = styled.div`
+  /* width: 30rem; */
+`;
+
+export const OpenButton = styled(BackButton)<{ $isOpened: boolean }>`
+  right: -1% !important;
+  left: auto;
+
+  &::after {
+    content: ${(props) => (props.$isOpened ? '"close"' : '"projects"')};
   }
 `;

@@ -21,7 +21,7 @@ export const BackButton = styled.div`
   position: absolute;
   top: 0;
   left: -1rem;
-  z-index: 1;
+  z-index: 2;
   background-color: ${colors.background};
   font-size: 2rem;
   font-weight: 700;

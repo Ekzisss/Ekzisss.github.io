@@ -2,29 +2,28 @@ import { FC, HTMLAttributes } from 'react';
 import styled from 'styled-components';
 import colors from '@/colors';
 import { projTypes } from '@/features/dbGet';
-import { SemiMediumTittle } from '@/styles';
 import img1 from '@/assets/0.webp';
 import img2 from '@/assets/1.webp';
 
 const Left = styled.div`
   display: flex;
-  height: calc(100vh - 2rem);
-  width: 50%;
+  ${window.innerWidth < 690 ? `flex-direction: column;` : 'width: 50%;height: calc(100vh - 2rem);'}
   padding-left: 1rem;
   flex-direction: column;
   gap: 2rem;
 
   border-left: 2px ${colors.primary} solid;
+  ${window.innerWidth < 1024 ? 'font-size: 1rem;' : 'font-size: 1vw;'}
 `;
 
 const Right = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  width: 50%;
+  ${window.innerWidth < 690 ? `flex-direction: column;` : 'width: 50%;height: 100vh;'}
   padding-top: 4rem;
   gap: 0.3rem;
   align-items: center;
+  ${window.innerWidth < 1420 ? `flex-grow: 1;` : ''}
 
   & img {
     width: 100%;
@@ -39,12 +38,17 @@ const Right = styled.div`
     text-align: center;
 
     ${colors.gradientText};
+    ${window.innerWidth < 1024 ? 'font-size: 1rem;' : 'font-size: 1vw;'}
 
     &:hover {
       text-decoration: underline;
       color: ${colors.accent};
     }
   }
+`;
+
+const Title = styled.h2`
+  ${window.innerWidth < 1024 ? 'font-size: 4rem;' : 'font-size: 4vw;'}
 `;
 
 const images = [img1, img2];
@@ -56,7 +60,7 @@ const ProjDisplay: FC<propTypes> = ({ project }) => {
     <>
       <Left>
         <div>
-          <SemiMediumTittle>{project.name}</SemiMediumTittle>
+          <Title>{project.name}</Title>
         </div>
         <section>
           <p>{project.description}</p>

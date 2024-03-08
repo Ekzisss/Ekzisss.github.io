@@ -1,13 +1,12 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import NavItem from '../../components/navItem';
 import { Sections } from '../../config/enums';
 
 import { change } from '../../redux/sectionState';
 import { useAppDispatch } from '../../redux/hooks';
 
-import { BigTittle, MediumTittle } from '@/styles';
 import { motion } from 'framer-motion';
-import { Wrapper, SubTitle, Nav, FooterInfo, Decoration, AnimationTransition } from './styledComp';
+import { Wrapper, Nav, FooterInfo, Decoration, AnimationTransition, Title, SubTitle } from './styledComp';
 
 export default function Main({ initial }: { initial: boolean }) {
   const dispatch = useAppDispatch();
@@ -27,8 +26,7 @@ export default function Main({ initial }: { initial: boolean }) {
       animate={initial ? { clipPath: 'circle(100% at 30% 40%)' } : ''}
     >
       <motion.div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-        <BigTittle>Ekzis</BigTittle>
-        <MediumTittle>Almaz Abdulhakov</MediumTittle>
+        <Title>Ekzis</Title>
         <SubTitle>frontend developer</SubTitle>
       </motion.div>
       <Nav>
