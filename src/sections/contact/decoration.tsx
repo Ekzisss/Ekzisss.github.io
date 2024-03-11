@@ -13,7 +13,7 @@ const CirclesSvg = styled.svg`
   z-index: -1;
 `;
 
-const Decoration: FC<propTypes> = (submitted) => {
+const Decoration: FC<propTypes> = () => {
   return (
     <CirclesSvg id="Слой_1" data-name="Слой 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 362.2 362.2">
       <defs>
@@ -60,8 +60,6 @@ const Decoration: FC<propTypes> = (submitted) => {
   );
 };
 
-interface propTypes extends HTMLAttributes<HTMLDivElement> {
-  submitted: boolean;
-}
+interface propTypes extends HTMLAttributes<HTMLDivElement> {}
 
 export default Decoration;

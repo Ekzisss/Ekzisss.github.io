@@ -156,7 +156,7 @@ export default function Contact({
       transition={{ duration: 0.5, delay: 0.2, x: { duration: 1 } }}
       animate={{ clipPath: 'circle(100% at 30% 40%)' }}
       exit={{ x: 1 }}
-      style={{ zIndex: sectionState === Sections.main ? '0' : '100' }}
+      style={{ zIndex: sectionState === Sections.contact ? '100' : '0' }}
     >
       <Left>
         <a href="https://t.me/Ekzissss">
@@ -206,7 +206,7 @@ export default function Contact({
         </AnimatePresence>
       </Right>
       <BackButton onClick={() => dispatch(change(0))}></BackButton>
-      <Decoration submitted={submitted}></Decoration>
+      <Decoration></Decoration>
     </Main>
   );
 }

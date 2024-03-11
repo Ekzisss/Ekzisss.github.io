@@ -12,6 +12,7 @@ import { useAppSelector } from './redux/hooks';
 import styled from 'styled-components';
 import colors from './colors';
 import mouseShit from './features/mouseShit';
+import Admin from './sections/admin';
 
 const Wrapper = styled.div`
   position: relative;
@@ -38,8 +39,8 @@ const coords = { x: 0, y: 0 };
 function App() {
   const sectionState = useAppSelector((state) => state.sectionState.value);
   const [submitted, setSubmitted] = useState<boolean>(false);
-
   const circles = useRef<HTMLDivElement>(null);
+  const admin = new URLSearchParams(window.location.search).get('admin');
 
   useEffect(() => {
     setTimeout(() => (initial = true), 1000);
@@ -51,14 +52,14 @@ function App() {
     coords.y = e.clientY;
   }
 
-  // function onClickHandler(e) {}
+  if (admin === import.meta.env.VITE_ADMIN_KEY) return <Admin />;
 
   return (
     <Wrapper onMouseMove={mouseTrailHandler}>
-      <AnimatePresence mode="sync">{sectionState === Sections.main ? <Main initial={initial}></Main> : ''}</AnimatePresence>
-      <AnimatePresence mode="sync">{sectionState === Sections.projects ? <Projects></Projects> : ''}</AnimatePresence>
-      <AnimatePresence>{sectionState === Sections.persona ? <Persona></Persona> : ''}</AnimatePresence>
-      <AnimatePresence>
+      <AnimatePresence mode="wait">{sectionState === Sections.main ? <Main initial={initial}></Main> : ''}</AnimatePresence>
+      <AnimatePresence mode="wait">{sectionState === Sections.projects ? <Projects></Projects> : ''}</AnimatePresence>
+      <AnimatePresence mode="wait">{sectionState === Sections.persona ? <Persona></Persona> : ''}</AnimatePresence>
+      <AnimatePresence mode="wait">
         {sectionState === Sections.contact ? <Contact submitted={submitted} setSubmitted={setSubmitted}></Contact> : ''}
       </AnimatePresence>
       <div ref={circles}>

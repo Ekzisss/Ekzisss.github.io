@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { change } from '@/redux/sectionState';
 import { motion } from 'framer-motion';
 import { Sections } from '@/config/enums';
-import { Main, Left, Right } from './styledComp';
+import { Main, Left } from './styledComp';
 import { moveHandler, enterHandler, leaveHandler } from './hoverCard';
 import SvgCircle from './SvgCircle';
 
@@ -20,7 +20,7 @@ export default function Persona() {
       transition={{ duration: 0.5, delay: 0.2, x: { duration: 1 } }}
       animate={{ clipPath: 'circle(100% at 30% 40%)' }}
       exit={{ x: 1 }}
-      style={{ zIndex: sectionState === Sections.main ? '0' : '100' }}
+      style={{ zIndex: sectionState === Sections.persona ? '100' : '0' }}
     >
       <Left>
         <h1>Almaz Abdulhakov</h1>

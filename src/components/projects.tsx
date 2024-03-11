@@ -10,7 +10,7 @@ const Main = styled.div<{ $isActive: boolean }>`
   gap: 0.3rem;
   flex-direction: column;
   cursor: pointer;
-  background-color: ${colors.color};
+  background: ${colors.color};
   width: ${(props) => (props.$isActive ? '90%' : '70%')};
   transition: all 0.2s linear;
 
@@ -31,7 +31,7 @@ const Main = styled.div<{ $isActive: boolean }>`
   }
 
   & h2 {
-    color: ${colors.background};
+    ${(props) => (props.$isActive ? colors.gradientText : `color: ${colors.background};`)}
 
     &::selection {
       background-color: ${colors.background};

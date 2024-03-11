@@ -85,10 +85,6 @@ export const Decoration = styled.div`
   }
 `;
 
-export const EmptySpace = styled.div`
-  /* width: 30rem; */
-`;
-
 export const OpenButton = styled(BackButton)<{ $isOpened: boolean }>`
   right: -1% !important;
   left: auto;

@@ -6,8 +6,8 @@ import { BackButton } from '@/styles';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { change } from '@/redux/sectionState';
 
-import { Main, ProjectsCarousel, Presentation, Decoration, EmptySpace, OpenButton } from './styledComp';
-import { easeIn, easeOut, motion } from 'framer-motion';
+import { Main, ProjectsCarousel, Presentation, Decoration, OpenButton } from './styledComp';
+import { easeOut, motion } from 'framer-motion';
 import { Sections } from '@/config/enums';
 
 const variants = {
@@ -19,7 +19,7 @@ const variants = {
 export default function Projects() {
   const [projects, setProjects] = React.useState<projTypes[]>([]);
   const [currentProj, setCurrentProj] = React.useState<number>(0);
-  const [projectsTabOpened, setProjectsTabOpened] = React.useState<boolean>(false);
+  const [projectsTabOpened, setProjectsTabOpened] = React.useState<boolean>(window.innerWidth < 1420 ? false : true);
   const dispatch = useAppDispatch();
   const sectionState = useAppSelector((state) => state.sectionState.value);
 
@@ -38,9 +38,9 @@ export default function Projects() {
       transition={{ duration: 0.5, delay: 0.2, x: { duration: 1 } }}
       animate={{ clipPath: 'circle(100% at 30% 40%)' }}
       exit={{ x: 1 }}
-      style={{ zIndex: sectionState === Sections.main ? '0' : '100' }}
+      style={{ zIndex: sectionState === Sections.projects ? '100' : '0' }}
     >
-      <EmptySpace style={{ width: window.innerWidth < 1420 ? '0' : '30rem' }}></EmptySpace>
+      <div style={{ width: window.innerWidth < 1420 ? '0' : '30rem' }}></div>
       <Presentation>{projects[currentProj] ? <ProjDisplay project={projects[currentProj]}></ProjDisplay> : ''}</Presentation>
 
       <Decoration as={motion.div} animate={{ transform: 'rotate(-10deg) translateX(100px)' }} transition={{ duration: 1 }}>
