@@ -1,19 +1,31 @@
-import React from 'react';
-import NavItem from '../../components/navItem';
-import { Sections } from '../../config/enums';
+import React from "react";
+import NavItem from "../../components/navItem";
+import { Sections } from "../../config/enums";
 
-import { change } from '../../redux/sectionState';
-import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { change } from "../../redux/sectionState";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 
-import { motion } from 'framer-motion';
-import { Wrapper, Nav, FooterInfo, Decoration, AnimationTransition, Title, SubTitle } from './styledComp';
+import { motion } from "framer-motion";
+import {
+  Wrapper,
+  Nav,
+  FooterInfo,
+  Decoration,
+  AnimationTransition,
+  Title,
+  SubTitle,
+} from "./styledComp";
 
 let delay = true;
 
 export default function Main({ initial }: { initial: boolean }) {
   const dispatch = useAppDispatch();
   const sectionState = useAppSelector((state) => state.sectionState.value);
-  const [navItemActive, setNavItemActive] = React.useState([true, false, false]);
+  const [navItemActive, setNavItemActive] = React.useState([
+    true,
+    false,
+    false,
+  ]);
 
   function activeChange(itemNumber: number) {
     const temp = navItemActive.slice().fill(false);
@@ -28,17 +40,24 @@ export default function Main({ initial }: { initial: boolean }) {
   return (
     <Wrapper
       as={motion.div}
-      initial={initial ? { clipPath: 'circle(0% at 30% 40%)' } : ''}
+      initial={initial ? { clipPath: "circle(0% at 30% 40%)" } : ""}
       transition={{ duration: 1 }}
-      animate={initial ? { clipPath: 'circle(100% at 30% 40%)' } : ''}
+      animate={initial ? { clipPath: "circle(100% at 30% 40%)" } : ""}
     >
-      <motion.div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+      <motion.div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <Title>Ekzis</Title>
         <SubTitle>frontend developer</SubTitle>
       </motion.div>
       <Nav>
         <NavItem
-          OnCLick={() => (delay ? '' : dispatch(change(Sections.projects)))}
+          OnCLick={() => (delay ? "" : dispatch(change(Sections.projects)))}
           activeChange={() => activeChange(0)}
           isActive={navItemActive[0]}
           isOdd={0 % 2 !== 0}
@@ -64,17 +83,23 @@ export default function Main({ initial }: { initial: boolean }) {
         <a href="https://github.com/Ekzisss/Ekzisss.github.io">Github</a>
       </FooterInfo>
       <AnimationTransition
-        initial={{ top: '10%', left: '10%', scale: 0 }}
+        initial={{ top: "10%", left: "10%", scale: 0 }}
         transition={{ duration: 0.5 }}
         as={motion.div}
         exit={{ scale: Math.floor(window.innerWidth / 100) + 4 }}
       ></AnimationTransition>
       <Decoration>
-        <motion.h1 animate={{ y: 3000 }} transition={{ repeat: Infinity, duration: 60, ease: 'linear' }}>
-          MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN
-          &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN
-          &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN
-          &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN
+        <motion.h1
+          animate={{ y: 3000 }}
+          transition={{ repeat: Infinity, duration: 60, ease: "linear" }}
+        >
+          MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN
+          &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN
+          &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN
+          &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN
+          &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN
+          &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN
+          &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN &nbsp;MAIN
         </motion.h1>
       </Decoration>
     </Wrapper>
