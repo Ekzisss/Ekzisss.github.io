@@ -1,6 +1,8 @@
-import colors from '@/colors';
-import { FC, HTMLAttributes } from 'react';
-import styled from 'styled-components';
+import colors from "@/colors";
+import { useAppDispatch } from "@/redux/hooks";
+import { setFalse, setTrue } from "@/redux/hoverState";
+import { FC, HTMLAttributes } from "react";
+import styled from "styled-components";
 
 const Main = styled.div<{ $isActive: boolean }>`
   position: relative;
@@ -11,18 +13,18 @@ const Main = styled.div<{ $isActive: boolean }>`
   flex-direction: column;
   cursor: pointer;
   background: ${colors.color};
-  width: ${(props) => (props.$isActive ? '90%' : '70%')};
+  width: ${(props) => (props.$isActive ? "90%" : "70%")};
   transition: all 0.2s linear;
 
   &:hover {
-    ${(props) => (props.$isActive ? '' : 'width: 75%;&::before {right: -5%;}')};
+    ${(props) => (props.$isActive ? "" : "width: 75%;&::before {right: -5%;}")};
   }
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
-    right: ${(props) => (props.$isActive ? '-4%' : '-5.4%')};
+    right: ${(props) => (props.$isActive ? "-4%" : "-5.4%")};
     width: 20%;
     height: 100%;
     background-color: ${colors.color};
@@ -31,7 +33,8 @@ const Main = styled.div<{ $isActive: boolean }>`
   }
 
   & h2 {
-    ${(props) => (props.$isActive ? colors.gradientText : `color: ${colors.background};`)}
+    ${(props) =>
+      props.$isActive ? colors.gradientText : `color: ${colors.background};`}
 
     &::selection {
       background-color: ${colors.background};
@@ -51,14 +54,17 @@ const Tag = styled.div`
 `;
 
 const Project: FC<propTypes> = ({ name, isActive, tags, onClick }) => {
+  const dispatch = useAppDispatch();
+
   return (
-    <Main $isActive={isActive} onClick={onClick}>
+    <Main
+      onMouseLeave={() => dispatch(setFalse())}
+      onMouseEnter={() => dispatch(setTrue())}
+      $isActive={isActive}
+      onClick={onClick}
+    >
       <h2>{name}</h2>
-      <div>
-        {tags?.map((item, index) => (
-          <Tag key={index}>{item}</Tag>
-        ))}
-      </div>
+      <div>{tags?.map((item, index) => <Tag key={index}>{item}</Tag>)}</div>
     </Main>
   );
 };

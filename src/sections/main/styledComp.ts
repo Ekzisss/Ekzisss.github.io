@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import colors from '../../colors';
+import styled from "styled-components";
+import colors from "../../colors";
 
 export const Wrapper = styled.div`
   position: absolute;
@@ -14,14 +14,14 @@ export const Wrapper = styled.div`
   gap: 6rem;
   padding-top: 2rem;
 
-  z-index: 10;
+  z-index: 1;
 `;
 
 export const SubTitle = styled.h2`
   color: ${colors.primary};
   width: 100%;
   position: relative;
-  ${window.innerWidth >= 1024 ? 'font-size: 1.3vw;' : 'font-size: 1.3rem;'}
+  ${window.innerWidth >= 1024 ? "font-size: 1.3vw;" : "font-size: 1.3rem;"}
 
   color: transparent;
   background-clip: text;
@@ -59,11 +59,12 @@ export const AnimationTransition = styled.div<{ $color?: string }>`
 export const Decoration = styled.div`
   position: absolute;
   height: 100vh;
-  ${window.innerWidth >= 1024 ? 'width: 25vw;' : 'width: 45vw;'}
+  ${window.innerWidth >= 1024 ? "width: 25vw;" : "width: 45vw;"}
   background-color: ${colors.primary2};
   top: 0;
   left: 0;
-  transform: skew(-8deg) ${window.innerWidth >= 1024 ? 'translateX(-20%)' : 'translateX(-40%)'};
+  transform: skew(-8deg)
+    ${window.innerWidth >= 1024 ? "translateX(-20%)" : "translateX(-40%)"};
   z-index: -2;
 
   & h1 {
@@ -73,7 +74,7 @@ export const Decoration = styled.div`
     rotate: 180deg;
     position: absolute;
     right: -2.2vw;
-    font-family: 'Kanit';
+    font-family: "Kanit";
     white-space: nowrap;
     font-size: 10vw;
     z-index: -1;
@@ -81,32 +82,13 @@ export const Decoration = styled.div`
   }
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     height: 100vh;
     width: inherit;
     background-color: ${colors.primary3};
     top: 0;
     left: -0.5vw;
-    z-index: -1;
-  }
-`;
-
-export const Title = styled.h1`
-  ${window.innerWidth >= 1024 ? 'font-size: 8vw;' : 'font-size: 8rem;'}
-  position: relative;
-  width: 100%;
-
-  &::before {
-    content: 'Ekzis';
-    position: absolute;
-    display: block;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    height: 100%;
-    ${colors.gradientText}
-    transform: translate(-52%, -52%);
     z-index: -1;
   }
 `;

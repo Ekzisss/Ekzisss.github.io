@@ -12,9 +12,10 @@ import {
   FooterInfo,
   Decoration,
   AnimationTransition,
-  Title,
   SubTitle,
 } from "./styledComp";
+import MovingTitle from "@/components/movingTitle";
+import { setFalse, setTrue } from "@/redux/hoverState";
 
 let delay = true;
 
@@ -29,6 +30,7 @@ export default function Main({ initial }: { initial: boolean }) {
 
   function activeChange(itemNumber: number) {
     const temp = navItemActive.slice().fill(false);
+    dispatch(setTrue());
     temp[itemNumber] = true;
     setNavItemActive(temp);
   }
@@ -52,7 +54,7 @@ export default function Main({ initial }: { initial: boolean }) {
           alignItems: "center",
         }}
       >
-        <Title>Ekzis</Title>
+        <MovingTitle></MovingTitle>
         <SubTitle>frontend developer</SubTitle>
       </motion.div>
       <Nav>
@@ -79,8 +81,21 @@ export default function Main({ initial }: { initial: boolean }) {
         />
       </Nav>
       <FooterInfo>
-        <a href="https://t.me/Ekzissss">Telegram</a> <span>, </span>
-        <a href="https://github.com/Ekzisss/Ekzisss.github.io">Github</a>
+        <a
+          onMouseLeave={() => dispatch(setFalse())}
+          onMouseEnter={() => dispatch(setTrue())}
+          href="https://t.me/Ekzissss"
+        >
+          Telegram
+        </a>
+        <span>, </span>
+        <a
+          onMouseLeave={() => dispatch(setFalse())}
+          onMouseEnter={() => dispatch(setTrue())}
+          href="https://github.com/Ekzisss/Ekzisss.github.io"
+        >
+          Github
+        </a>
       </FooterInfo>
       <AnimationTransition
         initial={{ top: "10%", left: "10%", scale: 0 }}

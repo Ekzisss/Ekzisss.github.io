@@ -1,13 +1,13 @@
-import { configureStore } from '@reduxjs/toolkit';
-import sectionReducer from './sectionState.ts';
+import { configureStore } from "@reduxjs/toolkit";
+import sectionReducer from "./sectionState.ts";
+import hoverState from "./hoverState.ts";
 
 const store = configureStore({
-  reducer: { sectionState: sectionReducer },
+  reducer: { sectionState: sectionReducer, hoverState: hoverState },
 });
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
+
 export type AppDispatch = typeof store.dispatch;
 
 export default store;

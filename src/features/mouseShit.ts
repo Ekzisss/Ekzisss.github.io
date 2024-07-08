@@ -3,21 +3,27 @@ interface HTMLDivElementMutated extends HTMLElement {
   y?: number;
 }
 
-export default (circles: Array<HTMLDivElementMutated>, coords: { x: number; y: number }) => {
+export default (
+  circles: Array<HTMLDivElementMutated>,
+  coords: { x: number | null; y: number | null },
+) => {
   circles.forEach(function (circle) {
     circle.x = 0;
     circle.y = 0;
   });
 
   function animateCircles() {
-    let x = coords.x;
-    let y = coords.y;
+    let x = coords.x || 0;
+    let y = coords.y || 0;
 
     circles.forEach(function (circle, index) {
-      circle.style.left = x - 5 + 'px';
-      circle.style.top = y - 5 + 'px';
+      circle.style.left = x - 5 + "px";
+      circle.style.top = y - 5 + "px";
 
-      circle.style.scale = ((circles.length - index) / circles.length).toString();
+      circle.style.scale = (
+        (circles.length - index) /
+        circles.length
+      ).toString();
 
       circle.x = x;
       circle.y = y;
