@@ -1,22 +1,43 @@
-import React from "react";
+import { useEffect, useState, useCallback } from "react";
 
-const useMousePosition = () => {
-  const [mousePosition, setMousePosition] = React.useState<{
-    x: number;
-    y: number;
-  }>({
+interface MousePosition {
+  x: number;
+  y: number;
+}
+
+const useMousePosition = (): MousePosition => {
+  const [mousePosition, setMousePosition] = useState<MousePosition>({
     x: 0,
     y: 0,
   });
-  React.useEffect(() => {
-    const updateMousePosition = (ev: MouseEventInit) => {
-      setMousePosition({ x: ev.clientX || 0, y: ev.clientY || 0 });
-    };
-    window.addEventListener("mousemove", updateMousePosition);
-    return () => {
-      window.removeEventListener("mousemove", updateMousePosition);
-    };
+
+  const updateMousePosition = useCallback((event: MouseEvent) => {
+    setMousePosition({ x: event.clientX, y: event.clientY });
   }, []);
+
+  useEffect(() => {
+    let rafId: number;
+    let lastUpdate = 0;
+    
+    const throttledUpdate = (event: MouseEvent) => {
+      const now = Date.now();
+      if (now - lastUpdate > 16) { // ~60fps
+        lastUpdate = now;
+        updateMousePosition(event);
+      } else {
+        cancelAnimationFrame(rafId);
+        rafId = requestAnimationFrame(() => updateMousePosition(event));
+      }
+    };
+
+    window.addEventListener("mousemove", throttledUpdate, { passive: true });
+    
+    return () => {
+      window.removeEventListener("mousemove", throttledUpdate);
+      cancelAnimationFrame(rafId);
+    };
+  }, [updateMousePosition]);
+
   return mousePosition;
 };
 

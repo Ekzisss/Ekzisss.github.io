@@ -26,7 +26,6 @@ const Main = styled.div`
 `;
 
 const StyledLink = styled.a<{ $isActive: boolean; $isOdd: boolean }>`
-  cursor: pointer;
   font-family: "Kanit";
   ${window.innerWidth >= 1024 ? "font-size: 2.5vw;" : "font-size: 3rem;"}
   font-weight: 700;

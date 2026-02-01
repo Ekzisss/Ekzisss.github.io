@@ -11,7 +11,6 @@ const Main = styled.div<{ $isActive: boolean }>`
   display: flex;
   gap: 0.3rem;
   flex-direction: column;
-  cursor: pointer;
   background: ${colors.color};
   width: ${(props) => (props.$isActive ? "90%" : "70%")};
   transition: all 0.2s linear;

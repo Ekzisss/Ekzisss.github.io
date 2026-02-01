@@ -67,7 +67,6 @@ const Form = styled.form`
     font-family: "Kanit";
     background-color: ${colors.primary2};
     border: none;
-    cursor: pointer;
     padding: 0.3rem;
     transition: 0.2s linear all;
     font-size: ${window.innerWidth >= 1024 ? "2vw;" : `1.8rem`};

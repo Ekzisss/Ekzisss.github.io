@@ -1,5 +1,4 @@
 import { FC, HTMLAttributes } from "react";
-import colors from "@/colors";
 import styled from "styled-components";
 import useMousePosition from "@/hooks/useMousePosition";
 import { motion, AnimatePresence } from "framer-motion";
@@ -8,7 +7,6 @@ import { useAppSelector } from "@/redux/hooks";
 const Circle = styled.div`
   height: 30px;
   width: 30px;
-  /* background-color: ${colors.accent}; */
   position: absolute;
   top: 0;
   left: 0;
@@ -16,17 +14,14 @@ const Circle = styled.div`
   z-index: 99999999;
   border-radius: 50%;
   backdrop-filter: invert(1) grayscale(1);
-  /* -webkit-backdrop-filter: invert(1) grayscale(1); */
   transform: translate(-50%, -50%);
 
   div {
-    /* border-radius: 50%; */
     position: absolute;
     top: 50%;
     left: 50%;
     width: 40px;
     height: 40px;
-    /* z-index: -1; */
     border-radius: 50%;
   }
 `;
@@ -34,6 +29,8 @@ const Circle = styled.div`
 const Circles: FC<propTypes> = () => {
   const mousePosition = useMousePosition();
   const selector = useAppSelector((state) => state.hoverState.value);
+
+  console.log(selector);
 
   return (
     <Circle style={{ top: mousePosition.y, left: mousePosition.x }}>

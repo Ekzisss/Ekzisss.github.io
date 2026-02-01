@@ -20,7 +20,6 @@ const Wrapper = styled.div`
   width: 100vw;
   overflow: hidden;
   background-color: ${colors.primary};
-  cursor: none;
 `;
 
 let initial = false;

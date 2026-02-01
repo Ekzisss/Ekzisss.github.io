@@ -35,7 +35,6 @@ export const BackButton = styled.div`
 
   transition: 0.3s all linear;
 
-  cursor: pointer;
   &:hover {
     background: ${colors.onlyGradient};
 
